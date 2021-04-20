@@ -1,0 +1,99 @@
+﻿<Window x:Class="TripleX.Prototype.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TripleX.Prototype"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="Label">
+            <Setter Property="FontSize"  Value="25"/>
+        </Style>
+        <local:InverseBooleanConverter x:Key="boolInverseConverter" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="60"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Telefonnummer Optimierung" 
+               Grid.ColumnSpan="6"
+               HorizontalAlignment="Center"/>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Telefonnummer" FontSize="20" TextAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Grid.Column="2"  Margin="5" Name="txtBox_Input" />
+        <Label Content="Ländercodeeingabe"
+               Grid.Row="2"
+               Grid.Column="1"/>
+        <StackPanel Grid.Row="2" 
+                    Grid.Column="2" 
+                    Margin="5" 
+                    Orientation="Horizontal" >
+            <TextBox Width="250" IsEnabled="{Binding IsChecked, ElementName=checkB_defaultCountry, Converter={StaticResource boolInverseConverter}}"/>
+            <CheckBox FontSize="15" IsChecked="True" VerticalAlignment="Center" x:Name="checkB_defaultCountry" />
+        </StackPanel>
+        <Button Content="Analyse" 
+                Grid.Column="1" 
+                Grid.ColumnSpan="2" 
+                Grid.Row="3"
+                FontSize="25"
+                Margin=" 5"
+                Padding="0"
+                VerticalAlignment="Center" Click="Button_Click"/>
+        <Label Content="Ländervorwahl"
+                Grid.Column="1" 
+                Grid.Row="4"/>
+        <TextBox IsReadOnly="True"
+                 Grid.Column="2"
+                 Grid.Row="4"
+                 Margin="5"
+                 x:Name="txtBox_country"/>
+        <Label Content="Ortsvorwahl"  
+               Grid.Column="1" 
+               Grid.Row="5"/>
+        <TextBox IsReadOnly="True"
+                 Grid.Column="2"
+                 Grid.Row="5"
+                 Margin="5"
+                 x:Name="txtBox_area"/>
+        <Label Content="Hauptwahl"        
+               Grid.Column="1" 
+               Grid.Row="6"/>
+        <TextBox IsReadOnly="True"
+                 Grid.Column="2"
+                 Grid.Row="6"
+                 Margin="5"
+                 x:Name="txtBox_main"/>
+        <Label Content="Durchwahl"        
+               Grid.Column="1" 
+               Grid.Row="7"/>
+        <TextBox IsReadOnly="True"
+                 Grid.Column="2"
+                 Grid.Row="7"
+                 Margin="5"
+                 x:Name="txtBox_forwarding"/>
+
+
+        <Label Grid.Row="9" 
+               Grid.Column="1" Grid.ColumnSpan="2"
+               Foreground="DarkRed"
+               x:Name="lbl_error"
+               HorizontalAlignment="Center"/>
+    </Grid>
+</Window>
