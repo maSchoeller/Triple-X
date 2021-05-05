@@ -41,13 +41,18 @@
         <Label Content="Ländercodeeingabe"
                Grid.Row="2"
                Grid.Column="1"/>
-        <StackPanel Grid.Row="2" 
+        <!--<StackPanel Grid.Row="2" 
                     Grid.Column="2" 
                     Margin="5" 
-                    Orientation="Horizontal" >
-            <TextBox Width="250" IsEnabled="{Binding IsChecked, ElementName=checkB_defaultCountry, Converter={StaticResource boolInverseConverter}}"/>
-            <CheckBox FontSize="15" IsChecked="True" VerticalAlignment="Center" x:Name="checkB_defaultCountry" />
-        </StackPanel>
+                    Orientation="Horizontal" >-->
+            <TextBox Grid.Row="2" 
+                    Grid.Column="2" 
+                     Margin="5" 
+                     x:Name="txt_customeCountryCode"
+                     Text="+49"/>
+            <!--IsEnabled="{Binding IsChecked, ElementName=checkB_defaultCountry}"-->
+            <!--<CheckBox FontSize="15" IsChecked="False" VerticalAlignment="Center" x:Name="checkB_defaultCountry" />-->
+        <!--</StackPanel>-->
         <Button Content="Analyse" 
                 Grid.Column="1" 
                 Grid.ColumnSpan="2" 

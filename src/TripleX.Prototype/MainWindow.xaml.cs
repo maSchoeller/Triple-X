@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using TripleX.Core.Prototype;
+
 namespace TripleX.Prototype
 {
     /// <summary>
@@ -20,22 +22,28 @@ namespace TripleX.Prototype
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly PhonenumberParser _parser;
         public MainWindow()
         {
-            _parser = new PhonenumberParser();
             InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var result = _parser.Parser(txtBox_Input.Text);
+            var parser = new PhonenumberParser(txtBox_Input.Text);
+            try
+            {
+                var result = parser.GetPhonenumber();
+                txtBox_country.Text = result.Country?.ToString() ?? txt_customeCountryCode.Text;
+                txtBox_area.Text = result.Area.ToString();
+                txtBox_main.Text = result.Main.ToString();
+                txtBox_forwarding.Text = result.Forwarding!.ToString();
 
-            txtBox_country.Text = result.Country;
-            txtBox_area.Text = result.Area;
-            txtBox_main.Text = result.Main;
-            txtBox_forwarding.Text = result.Forwarding;
-            lbl_error.Content = result.ErrorMessage;
+            }
+            catch (Exception ex)
+            {
+                lbl_error.Content = ex.Message;
+                return;
+            }
         }
     }
 }

@@ -7,4 +7,8 @@
     <Nullable>Enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TripleX.Prototype.Core\TripleX.Prototype.Core.csproj" />
+  </ItemGroup>
+
 </Project>
